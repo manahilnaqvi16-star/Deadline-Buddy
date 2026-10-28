@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-high": "#e2e7ff",
+            "secondary": "#006c49",
+            "on-secondary-container": "#00714d",
+            "background": "#faf8ff",
+            "secondary-container": "#6cf8bb",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-bright": "#faf8ff",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface": "#faf8ff",
+            "on-primary-container": "#dad7ff",
+            "primary-fixed": "#e2dfff",
+            "on-error": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-variant": "#dae2fd",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-tint": "#4d44e3",
+            "surface-container-highest": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-surface": "#131b2e",
+            "on-secondary-fixed-variant": "#005236",
+            "on-background": "#131b2e",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c7c4d8",
+            "inverse-on-surface": "#eef0ff",
+            "primary": "#3525cd",
+            "tertiary": "#684000",
+            "secondary-fixed": "#6ffbbe",
+            "surface-dim": "#d2d9f4",
+            "on-primary-fixed-variant": "#3323cc",
+            "on-surface-variant": "#464555",
+            "surface-container": "#eaedff",
+            "secondary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#0f0069",
+            "on-secondary-fixed": "#002113",
+            "on-tertiary-container": "#ffd4a4",
+            "inverse-primary": "#c3c0ff",
+            "primary-container": "#4f46e5",
+            "tertiary-container": "#885500",
+            "error": "#ba1a1a",
+            "outline": "#777587",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#ffb95f",
+            "surface-container-low": "#f2f3ff"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "margin-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.25rem",
+            "margin-tablet": "1.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          fontFamily: {
+            "headline-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-xs": ["Inter"],
+            "headline-xl": ["Inter"],
+            "label-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          fontSize: {
+            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "label-xs": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "700" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-lg-mobile": ["22px", { lineHeight: "30px", letterSpacing: "-0.015em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Persistent Dark Navigation Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-[#0d121f] text-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.25)] z-50 flex flex-col justify-between">
+<div class="flex flex-col">
+<!-- Brand Header -->
+<div class="h-20 px-space-lg flex items-center justify-between border-b border-slate-800/80">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center text-white font-bold text-base shadow-[0_2px_8px_rgba(79,70,229,0.35)]">
+            DB
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-white font-bold tracking-tight">Deadline Buddy</span>
+<span class="px-1.5 py-0.5 rounded-full bg-error text-white font-label-xs text-[10px] font-semibold leading-none">3 urgent</span>
+</div>
+<span class="font-label-xs text-label-xs text-slate-400 font-medium">Workspace v2.4</span>
+</div>
+</div>
+</div>
+<!-- Quick Search / Shortcut Bar -->
+<div class="px-space-md pt-space-md pb-space-xs">
+<div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-900/90 text-slate-400 text-label-sm border border-slate-800">
+<span class="font-body-sm text-body-sm text-slate-400">Quick Find</span>
+<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-label-xs text-label-xs border border-slate-700/80">⌘K</kbd>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="px-space-md py-space-xs">
+<nav class="flex flex-col gap-1" data-active-classes="bg-primary text-white font-semibold shadow-[0_2px_8px_rgba(79,70,229,0.4)]">
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="dashboard" href="Dashboard.html.html">
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="my-assignments" href="my application.html.html">
+<span class="font-label-md text-label-md">My Assignments</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-label-xs text-label-xs font-semibold">4</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="exam-and-quiz-tracker" href="ExamTracker.html.html">
+<span class="font-label-md text-label-md">Exam Tracker</span>
+<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-label-xs text-label-xs font-semibold">2</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="calendar" href="WeeklyCalender.html.html">
+<span class="font-label-md text-label-md">Weekly Calendar</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="completed-tasks" href="completed.html.html">
+<span class="font-label-md text-label-md">Completed Tasks</span>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-label-xs text-label-xs font-semibold">18</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="settings" href="Settings.html.html">
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Bottom User Profile Card -->
+<div class="p-space-md m-space-md bg-slate-900/80 border border-slate-800 rounded-xl flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-3 min-w-0">
+<img alt="Manahil Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZvFCnlr61jsOwHx_jn45-Mb37NkRgjvU1PZrd665aIGitlboQJt_Lavvcnesb-jijCFCLzG0UOGVWjYoa11wAFtiMde0BBw6s-9zQZWLvIgxQFpkzjBvkVZu_KMR6rVBpzJJDlHeGMIhWtlpppBjlpQlnVuvZ0EC_GbPXqmSkNDWJqgHbjeAA1zDdUrRFfvf1wHZ1IsRagoMIP2pvU2FYZiUdln5kBzf3aGuQgCr-_R2G9ZEwhLPz"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-white font-semibold truncate">AMU</span>
+<span class="font-label-xs text-label-xs text-slate-400 truncate">BS Comp Sci</span>
+</div>
+</div>
+<button aria-label="Toggle Dark Mode" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+</button>
+</div>
+</aside>
+<!-- Top Navigation and Content Area -->
+<div class="pl-72">
+<header class="fixed top-0 left-72 right-0 h-20 bg-surface-bright/95 backdrop-blur-xl border-b border-surface-container-high z-40 px-space-xl flex items-center justify-between">
+<!-- Greeting -->
+<div class="flex items-center gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Welcome</h1>
+<span class="text-lg leading-none">👋</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Let's make today productive.</span>
+</div>
+</div>
+<!-- Search, Controls, Actions, Profile -->
+<div class="flex items-center gap-space-md">
+<!-- Search with filter badge -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">search</span>
+<input class="w-72 h-10 pl-9 pr-20 bg-surface-container-lowest rounded-lg text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)] border border-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search tasks, courses, exams..." type="text"/>
+<div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-[10px] font-semibold border border-surface-container-high">
+            All Topics
+          </div>
+</div>
+<!-- Current Date Pill -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm border border-surface-container-high shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)]">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+<span class="font-medium">Thu, Apr 17</span>
+</div>
+<!-- Add Task Quick Action -->
+<button class="h-10 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center gap-2 shadow-[0_2px_8px_rgba(79,70,229,0.25)] transition-all active:scale-[0.99]">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add Task</span>
+<kbd class="text-[11px] font-normal opacity-80 pl-0.5">⌘N</kbd>
+</button>
+<!-- Top Right Avatar -->
+<img alt="Manahil Profile Avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/20 shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZvFCnlr61jsOwHx_jn45-Mb37NkRgjvU1PZrd665aIGitlboQJt_Lavvcnesb-jijCFCLzG0UOGVWjYoa11wAFtiMde0BBw6s-9zQZWLvIgxQFpkzjBvkVZu_KMR6rVBpzJJDlHeGMIhWtlpppBjlpQlnVuvZ0EC_GbPXqmSkNDWJqgHbjeAA1zDdUrRFfvf1wHZ1IsRagoMIP2pvU2FYZiUdln5kBzf3aGuQgCr-_R2G9ZEwhLPz"/>
+</div>
+</header>
+<!-- Main Content Injection -->
+<main class="w-full pt-20 px-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full pb-16 space-y-8">
+<!-- Dynamic Top Bar & Metric Strip -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<!-- Academic Milestone Identity -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Weekly Academic Timeline</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-xs">Week 9 of 16</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-xs">Spring '25</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Synchronized with LMS • 3 high-impact deliverables scheduled this cycle</span>
+</div>
+</div>
+<!-- View Modes & Action CTA -->
+<div class="flex items-center flex-wrap gap-2.5">
+<!-- Week Navigation -->
+<div class="flex items-center bg-surface-container-lowest rounded-xl p-1 shadow-sm">
+<button aria-label="Previous week" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" id="prevWeekBtn">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-3 h-8 rounded-lg bg-surface-container-high text-primary font-label-sm font-semibold hover:bg-surface-container-highest transition-colors" id="todayBtn">
+          Today
+        </button>
+<button aria-label="Next week" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" id="nextWeekBtn">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- View Switcher -->
+<div class="flex items-center bg-surface-container-lowest rounded-xl p-1 shadow-sm">
+<button class="view-pill px-3.5 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm transition-all shadow-sm" data-view="grid">
+          Week Grid
+        </button>
+<button class="view-pill px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm transition-all" data-view="timeline">
+          Monthly Timeline
+        </button>
+<button class="view-pill px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm transition-all" data-view="agenda">
+          Daily Focus
+        </button>
+</div>
+<!-- Add Milestone CTA -->
+<button class="h-10 px-4 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md flex items-center gap-2 shadow-md shadow-primary/20 transition-all active:scale-[0.98]" id="openModalBtn">
+<span class="material-symbols-outlined text-[18px]">event_upcoming</span>
+<span>+ New Deadline</span>
+</button>
+</div>
+</div>
+<!-- Operational Header: Category Filters & Study Burn-down Meta -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-4 items-center bg-surface-container-lowest p-4 rounded-2xl shadow-sm">
+<!-- Filter Tags / Legend -->
+<div class="xl:col-span-8 flex flex-wrap items-center gap-2">
+<span class="font-label-xs text-on-surface-variant uppercase tracking-wider mr-1">Filter Stream:</span>
+<button class="legend-filter active-filter px-3 py-1.5 rounded-full bg-surface-container-high text-primary font-label-xs flex items-center gap-1.5 transition-all" data-filter="all">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>All Events (11)</span>
+</button>
+<button class="legend-filter px-3 py-1.5 rounded-full bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-xs flex items-center gap-1.5 transition-all" data-filter="assignment">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Assignments (4)</span>
+</button>
+<button class="legend-filter px-3 py-1.5 rounded-full bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-xs flex items-center gap-1.5 transition-all" data-filter="quiz">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Quizzes &amp; Drills (2)</span>
+</button>
+<button class="legend-filter px-3 py-1.5 rounded-full bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-xs flex items-center gap-1.5 transition-all" data-filter="exam">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Midterms &amp; Exams (2)</span>
+</button>
+<button class="legend-filter px-3 py-1.5 rounded-full bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-xs flex items-center gap-1.5 transition-all" data-filter="study">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Study Blocks &amp; Labs (3)</span>
+</button>
+</div>
+<!-- Time window ticker & sync state -->
+<div class="xl:col-span-4 flex items-center justify-start xl:justify-end gap-3 text-on-surface-variant">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-lg font-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">sync</span>
+<span>Canvas LMS Sync: 4m ago</span>
+</div>
+<div class="font-label-sm font-semibold text-on-surface">
+        Oct 14 – Oct 20, 2024
+      </div>
+</div>
+</div>
+<!-- Primary Interactive Split Workspace -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+<!-- 7-Day Interactive Visual Grid (Span 8) -->
+<div class="xl:col-span-8 flex flex-col gap-4">
+<div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm">
+<!-- Days Header Columns -->
+<div class="grid grid-cols-7 gap-2 mb-4">
+<!-- Mon 14 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="0">
+<span class="font-label-xs text-on-surface-variant">MON</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">14</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary">Cleared</span>
+</button>
+<!-- Tue 15 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="1">
+<span class="font-label-xs text-on-surface-variant">TUE</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">15</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary">Cleared</span>
+</button>
+<!-- Wed 16 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="2">
+<span class="font-label-xs text-on-surface-variant">WED</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">16</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-primary/10 text-primary">2 tasks</span>
+</button>
+<!-- Thu 17 (Today) -->
+<button class="day-tab active-day group flex flex-col items-center p-2.5 rounded-xl bg-primary text-on-primary shadow-md shadow-primary/30 transition-all text-center relative overflow-hidden" data-day-index="3">
+<span class="font-label-xs opacity-90">THU</span>
+<span class="font-headline-sm text-headline-sm mt-0.5 font-bold">17</span>
+<span class="mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white text-primary">Today</span>
+</button>
+<!-- Fri 18 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="4">
+<span class="font-label-xs text-on-surface-variant">FRI</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">18</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-error/10 text-error">Critical</span>
+</button>
+<!-- Sat 19 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="5">
+<span class="font-label-xs text-on-surface-variant">SAT</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">19</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-tertiary-container/15 text-tertiary-container">Study (3h)</span>
+</button>
+<!-- Sun 20 -->
+<button class="day-tab group flex flex-col items-center p-2.5 rounded-xl bg-surface hover:bg-surface-container-high transition-all text-center" data-day-index="6">
+<span class="font-label-xs text-on-surface-variant">SUN</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">20</span>
+<span class="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-surface-container-highest text-on-surface-variant">1 due</span>
+</button>
+</div>
+<!-- 7-Column Timeboard Container -->
+<div class="grid grid-cols-7 gap-2 min-h-[540px]">
+<!-- Mon 14 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="0">
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="study" data-course="CS 201" data-desc="Recurrence relations proof writeups and propositional logic exercises." data-loc="Lab Room 102" data-ta="Prof. Alan Turing (office hrs M/W)" data-time="Cleared (Mon 14)" data-title="Discrete Math Lab 4" data-weight="5%">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-xs">Lab Checked</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2 line-through opacity-70">Discrete Math Lab</p>
+<div class="flex items-center gap-1 mt-2 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>2:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Tue 15 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="1">
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="assignment" data-course="CS 341" data-desc="Thread synchronizations, semaphore analysis, and race condition telemetry." data-loc="Virtual Portal Submission" data-ta="TA Marcus Vance" data-time="Cleared (Tue 15)" data-title="OS Kernel Lab Report" data-weight="10%">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-xs">100% Done</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">done_all</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2 line-through opacity-70">OS Lab Report Submission</p>
+<div class="flex items-center gap-1 mt-2 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>11:59 PM</span>
+</div>
+</div>
+</div>
+<!-- Wed 16 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="2">
+<!-- Event 1 -->
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="study" data-course="CS 240" data-desc="Binary Indexed Trees &amp; Segment Trees traversal algorithms dry run." data-loc="Lab 304, Turing Hall" data-ta="Prof. Harrison (Chair)" data-time="Wed 4:00 PM - 5:30 PM" data-title="Review Data Structures Code" data-weight="Prep">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-xs">In Person</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]">school</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Review Data Structures Code</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[12px]">location_on</span>
+<span class="truncate">Lab 304</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-primary font-label-xs font-semibold">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>4:00 PM</span>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="quiz" data-course="CS 240" data-desc="Online 15-minute speed quiz covering Big-O time and space complexity." data-loc="Canvas LMS Quiz Tab" data-ta="Auto-graded" data-time="Wed 7:00 PM" data-title="Algorithms Quick Drill" data-weight="3%">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container/15 text-tertiary font-label-xs">Quiz Drill</span>
+<span class="material-symbols-outlined text-tertiary text-[14px]">timer</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Quiz Prep &amp; Drill</p>
+<div class="flex items-center gap-1 mt-2 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>7:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Thu 17 (Today Column) -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-primary/5 rounded-xl ring-2 ring-primary/20" data-col="3">
+<!-- Active Flag Banner -->
+<div class="px-2 py-1 rounded-md bg-primary text-on-primary text-center font-label-xs font-bold uppercase tracking-wider">
+              High Priority Day
+            </div>
+<!-- Major Deadline Card -->
+<div class="event-card group p-3 rounded-xl bg-surface-container-lowest shadow-md hover:shadow-lg transition-all cursor-pointer relative" data-category="assignment" data-course="CS 355: Comp Networks" data-desc="Complete TCP multi-threaded client-server architecture with packet serialization and buffer flow control." data-loc="Git Classroom Repository" data-ta="TA Sarah Jenkins (s.jenkins@univ.edu)" data-time="Tonight • 11:59 PM" data-title="Socket Programming Lab" data-weight="15% Final">
+<div class="flex items-center justify-between mb-1.5">
+<span class="px-2 py-0.5 rounded-full bg-error/15 text-error font-label-xs font-bold animate-pulse">Major Due</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs">15%</span>
+</div>
+<p class="font-label-sm text-on-surface font-bold line-clamp-2 group-hover:text-primary transition-colors">Socket Programming Lab Submission</p>
+<div class="flex items-center gap-1.5 mt-2 text-error font-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">alarm</span>
+<span>Due 11:59 PM</span>
+</div>
+<div class="w-full bg-surface-container mt-2.5 rounded-full h-1.5 overflow-hidden">
+<div class="bg-error h-full rounded-full w-[70%]"></div>
+</div>
+<span class="block mt-1 font-label-xs text-on-surface-variant text-right">3 checkpoints left</span>
+</div>
+<!-- Quick Sync Study Block -->
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="study" data-course="CS 355" data-desc="Unit testing packet fragmentation on simulated drop-rate connections." data-loc="Silent Study Room 408" data-ta="Self-directed" data-time="Today 3:00 PM - 5:00 PM" data-title="Deep Work: Buffer Flow Debug" data-weight="Prep">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-xs">Focus Sprint</span>
+<span class="material-symbols-outlined text-secondary text-[14px]">headphones</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Deep Focus: Socket Debug</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>3:00 PM - 5:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Fri 18 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="4">
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="assignment" data-course="CS 310: Databases" data-desc="Complete conceptual model and logical mapping in 3NF schema format." data-loc="Canvas Submission Portal" data-ta="Prof. Gomez" data-time="Fri 5:00 PM" data-title="Database Systems ER Diagram" data-weight="8% Grade">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-primary-container/15 text-primary font-label-xs">Assignment</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs">8%</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Database Systems ER Diagram Due</p>
+<div class="flex items-center gap-1 mt-2 text-on-surface font-label-xs font-semibold">
+<span class="material-symbols-outlined text-[13px] text-error">schedule</span>
+<span>5:00 PM Deadline</span>
+</div>
+</div>
+</div>
+<!-- Sat 19 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="5">
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="study" data-course="CS 310 / Peer Group" data-desc="Collaborative review with Kevin &amp; Priya. Relational algebra exercises &amp; B+ Tree indices." data-loc="Library Pod B, 2nd Floor" data-ta="Study Lead: Kevin W." data-time="Sat 2:00 PM - 5:00 PM" data-title="Peer Study Group: DBMS Midterm" data-weight="Midterm Prep">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-xs">Group Study</span>
+<span class="material-symbols-outlined text-secondary text-[14px]">groups</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Peer Study: DBMS Midterm Prep</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[12px]">location_on</span>
+<span class="truncate">Library Pod B</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>2:00 PM - 5:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Sun 20 Column -->
+<div class="day-column flex flex-col gap-2.5 p-1 bg-surface-container-low rounded-xl" data-col="6">
+<div class="event-card group p-2.5 rounded-lg bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer" data-category="assignment" data-course="ENG 205: Tech Comm" data-desc="12-slide executive deck on Distributed Consensus for non-technical stakeholders." data-loc="Canvas Deck Upload" data-ta="Dr. Cheryl Vance" data-time="Sun 11:59 PM" data-title="Technical Presentation Slides" data-weight="10% Grade">
+<div class="flex items-center justify-between mb-1">
+<span class="px-1.5 py-0.5 rounded bg-primary-container/15 text-primary font-label-xs">Deliverable</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs">10%</span>
+</div>
+<p class="font-label-sm text-on-surface font-semibold line-clamp-2">Comm Skills Presentation Slides</p>
+<div class="flex items-center gap-1 mt-2 text-on-surface-variant font-label-xs">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>11:59 PM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Productivity Metric Strip -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Metric 1: Weekly Progress -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-xs text-on-surface-variant uppercase tracking-wider">Weekly Velocity</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">68% Done</span>
+<span class="font-body-sm text-body-sm text-secondary mt-0.5">5 of 8 tasks complete</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center">
+<svg class="w-12 h-12 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="68, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 2: Estimated Study Load -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-xs text-on-surface-variant uppercase tracking-wider">Required Focus Load</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">2h 45m</span>
+<span class="font-body-sm text-body-sm text-primary mt-0.5">Optimal pace for Thursday</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[24px]">hourglass_top</span>
+</div>
+</div>
+<!-- Metric 3: Grade Exposure -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-xs text-on-surface-variant uppercase tracking-wider">At-Stake Course Grade</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">33% Total</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Across 3 courses this week</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold">
+<span class="material-symbols-outlined text-[24px]">grade</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Split Right Panel: 'Day Agenda & Hourly Timeline' (Span 4) -->
+<div class="xl:col-span-4 flex flex-col gap-5 sticky top-24">
+<!-- Selected Day Detail Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm">
+<!-- Header with Countdown -->
+<div class="flex items-start justify-between pb-4 border-b border-surface-container-high">
+<div class="flex flex-col">
+<span class="font-label-xs text-primary font-bold uppercase tracking-wider" id="agendaDayBadge">Active Day Overview</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-0.5" id="agendaTitle">Thursday, Oct 17</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="agendaCourseSubtitle">CS 355: Computer Networks Lab Day</span>
+</div>
+<div class="px-2.5 py-1 rounded-xl bg-error/10 text-error flex items-center gap-1 font-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">alarm</span>
+<span id="countdownTimer">08h 42m left</span>
+</div>
+</div>
+<!-- Selected Focus Event Spotlight -->
+<div class="mt-4 p-4 rounded-xl bg-surface-container-low transition-all" id="spotlightPanel">
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-error text-white font-label-xs font-semibold" id="spotlightTag">High Weight (15%)</span>
+<span class="font-label-xs text-on-surface-variant font-medium" id="spotlightTime">Due at 11:59 PM</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="spotlightTitle">Socket Programming Lab</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed" id="spotlightDesc">
+            Multi-threaded TCP client-server implementation. Requires passing Wireshark capture analysis tests and zero thread deadlock.
+          </p>
+<div class="grid grid-cols-2 gap-2 mt-4 text-on-surface-variant font-label-xs">
+<div class="flex items-center gap-1.5 p-2 bg-surface-container-lowest rounded-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">pin_drop</span>
+<span class="truncate font-medium" id="spotlightLoc">Git Classroom</span>
+</div>
+<div class="flex items-center gap-1.5 p-2 bg-surface-container-lowest rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">account_circle</span>
+<span class="truncate font-medium" id="spotlightTA">TA: Sarah Jenkins</span>
+</div>
+</div>
+</div>
+<!-- Today's Actionable Checkpoints -->
+<div class="mt-5">
+<div class="flex items-center justify-between mb-3">
+<h4 class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wider">Milestone Checkpoints</h4>
+<span class="font-label-xs text-primary font-semibold" id="checkpointCount">2 of 5 resolved</span>
+</div>
+<div class="flex flex-col gap-2.5" id="checkpointsList">
+<!-- Item 1 -->
+<label class="checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="checkpoint-text font-body-sm text-body-sm text-on-surface font-medium line-through opacity-60">Implement thread pooling for concurrent client connections</span>
+<span class="font-label-xs text-on-surface-variant">Completed at 11:15 AM</span>
+</div>
+</label>
+<!-- Item 2 -->
+<label class="checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="checkpoint-text font-body-sm text-body-sm text-on-surface font-medium line-through opacity-60">Write buffer overflow guard wrappers</span>
+<span class="font-label-xs text-on-surface-variant">Verified with valgrind</span>
+</div>
+</label>
+<!-- Item 3 -->
+<label class="checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<input class="task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="checkpoint-text font-body-sm text-body-sm text-on-surface font-medium">Verify socket teardown packet flags in Wireshark</span>
+<span class="font-label-xs text-tertiary">Estimated: 45 min</span>
+</div>
+</label>
+<!-- Item 4 -->
+<label class="checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<input class="task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="checkpoint-text font-body-sm text-body-sm text-on-surface font-medium">Compile PDF reflection report with benchmark latency graphs</span>
+<span class="font-label-xs text-primary">Required deliverable</span>
+</div>
+</label>
+<!-- Item 5 -->
+<label class="checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<input class="task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="checkpoint-text font-body-sm text-body-sm text-on-surface font-medium">Push commit to origin main &amp; verify autograder badge</span>
+<span class="font-label-xs text-error">Final Step before 11:59 PM</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Instructor / Peer Collaboration Snippet -->
+<div class="mt-5 p-3.5 rounded-xl bg-surface flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="Close up professional portrait of female teaching assistant Sarah Jenkins in modern computing lab with warm studio lighting, wearing glasses and a subtle navy lanyard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrlF93tV3dfWN01beVATcpjXTyCLn73I_CliiEqysYIqOxIIAbAwfnslfNsiN-8cbp4WWNJIaSnjK9AGWsQvlsmdF-XYnrD7IONykT4tKpzgzhOLiMnty85Ai_uF_WksDMuMNo0tg8GhVnYjgdWE0lZ51HopaE8-xYldp-e-ofFBIgSyNT4kAjcKW8zx5mU9fj1lTnaV9eDUcDbUCDf5YYnZWbMeNadkCImnUNrgkjvtKDzJBAeD4e"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface font-semibold">Sarah Jenkins (TA)</span>
+<span class="font-label-xs text-secondary font-medium">Online on Discord &amp; Slack</span>
+</div>
+</div>
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-xs font-semibold flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+<span>Ask TA</span>
+</button>
+</div>
+</div>
+<!-- Quick Study Buddy & Study Music Widget -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">music_note</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface font-bold">Deep Work Lofi Radio</span>
+<span class="font-label-xs text-on-surface-variant">Binaural beats • 128 BPM</span>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" id="audioToggle">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Chronological 14-Day Upcoming Milestones Strip -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">timeline</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Upcoming 14-Day Milestone Horizon</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">High-stakes course examinations, major submissions, and project sprints</p>
+</div>
+</div>
+<div class="flex items-center gap-2 font-label-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> Exam / Midterm</span>
+<span class="flex items-center gap-1 ml-2"><span class="w-2 h-2 rounded-full bg-primary-container"></span> Major Project</span>
+<span class="flex items-center gap-1 ml-2"><span class="w-2 h-2 rounded-full bg-secondary"></span> Lab Quiz</span>
+</div>
+</div>
+<!-- Chronological Horizontal Scrollable Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-3">
+<!-- Milestone 1 -->
+<div class="p-4 rounded-xl bg-surface hover:bg-surface-container-high transition-all flex flex-col justify-between group cursor-pointer">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-error/15 text-error font-label-xs font-bold">In 2 Days</span>
+<span class="font-label-xs text-on-surface-variant font-semibold">CS 310</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">Relational Algebra &amp; Normalization Quiz</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">In-person computer lab quiz on 1NF through BCNF decompositions.</p>
+</div>
+<div class="flex items-center justify-between pt-3 mt-3 border-t border-surface-container-high">
+<span class="font-label-xs text-on-surface-variant">Fri, Oct 18 • 10:00 AM</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-label-xs font-bold shadow-xs">Weight: 8%</span>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="p-4 rounded-xl bg-surface hover:bg-surface-container-high transition-all flex flex-col justify-between group cursor-pointer">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary-container/15 text-primary font-label-xs font-bold">In 6 Days</span>
+<span class="font-label-xs text-on-surface-variant font-semibold">CS 341</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">Virtual Memory Simulator Implementation</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">LRU and FIFO page replacement algorithm benchmarking in C++20.</p>
+</div>
+<div class="flex items-center justify-between pt-3 mt-3 border-t border-surface-container-high">
+<span class="font-label-xs text-on-surface-variant">Wed, Oct 23 • 11:59 PM</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-label-xs font-bold shadow-xs">Weight: 12%</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="p-4 rounded-xl bg-surface hover:bg-surface-container-high transition-all flex flex-col justify-between group cursor-pointer">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-error text-white font-label-xs font-bold">In 9 Days</span>
+<span class="font-label-xs text-on-surface-variant font-semibold">CS 355</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">Computer Networks Midterm Exam</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Physical, Data Link &amp; Transport layer routing protocols comprehensive.</p>
+</div>
+<div class="flex items-center justify-between pt-3 mt-3 border-t border-surface-container-high">
+<span class="font-label-xs text-on-surface-variant">Sat, Oct 26 • 09:00 AM</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-error font-label-xs font-bold shadow-xs">Weight: 25%</span>
+</div>
+</div>
+<!-- Milestone 4 -->
+<div class="p-4 rounded-xl bg-surface hover:bg-surface-container-high transition-all flex flex-col justify-between group cursor-pointer">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-xs font-bold">In 13 Days</span>
+<span class="font-label-xs text-on-surface-variant font-semibold">CS 240</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">Graph Algorithms Coding Sprint</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Dijkstra, Bellman-Ford and Minimum Spanning Trees auto-evaluated tests.</p>
+</div>
+<div class="flex items-center justify-between pt-3 mt-3 border-t border-surface-container-high">
+<span class="font-label-xs text-on-surface-variant">Wed, Oct 30 • 05:00 PM</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-label-xs font-bold shadow-xs">Weight: 10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Modal: + New Deadline / Schedule Block (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" id="newDeadlineModal">
+<div class="w-full max-w-lg bg-surface-container-lowest rounded-2xl p-6 shadow-2xl transition-transform transform scale-100">
+<div class="flex items-center justify-between pb-4 border-b border-surface-container-high">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">add_task</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Schedule Deadline or Block</h3>
+<p class="font-label-xs text-on-surface-variant">Add an academic deliverable or focused study slot</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant" id="closeModalBtn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<form class="mt-4 flex flex-col gap-4" id="newDeadlineForm">
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Title</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary" placeholder="e.g. Distributed Systems Lab 3" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Course Code</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary" placeholder="e.g. CS 355" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Category</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary">
+<option value="assignment">Major Assignment</option>
+<option value="quiz">Quiz or Drill</option>
+<option value="exam">Midterm / Exam</option>
+<option value="study">Study Focus Block</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Target Date</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary" type="date" value="2024-10-18"/>
+</div>
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Weight (% of total grade)</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary" placeholder="e.g. 15%" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-label-xs text-on-surface-variant uppercase tracking-wider mb-1">Submission / Location</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface text-on-surface font-body-sm border border-surface-container-high focus:outline-none focus:border-primary" placeholder="e.g. Canvas Portal / Room 204" type="text"/>
+</div>
+<div class="flex items-center justify-end gap-3 pt-3 border-t border-surface-container-high mt-2">
+<button class="px-4 py-2 rounded-lg bg-surface text-on-surface hover:bg-surface-container-high font-label-sm" id="cancelModalBtn" type="button">
+            Cancel
+          </button>
+<button class="px-5 py-2 rounded-lg bg-primary text-on-primary font-label-sm font-semibold hover:bg-primary-container shadow-md" type="submit">
+            Save to Timeline
+          </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Day Information Data Store for dynamic updates
+    const dayData = [
+      {
+        dayName: 'Monday, Oct 14',
+        subtitle: 'CS 201: Discrete Mathematics Focus',
+        tag: 'Cleared / Completed',
+        tagBg: 'bg-secondary text-white',
+        time: 'All Sessions Concluded',
+        title: 'Discrete Math Lab & Proofs',
+        desc: 'Recurrence relations proof writeups and propositional logic exercises. Lab grade confirmed in portal.',
+        loc: 'Lab Room 102',
+        ta: 'Prof. Alan Turing',
+        countdown: 'Done',
+        checkpoints: [
+          { text: 'Proof writeup section 3.2 submitted', done: true },
+          { text: 'Induction base case verified', done: true },
+          { text: 'TA feedback acknowledged', done: true }
+        ]
+      },
+      {
+        dayName: 'Tuesday, Oct 15',
+        subtitle: 'CS 341: Operating Systems Kernel',
+        tag: 'Submitted & Cleared',
+        tagBg: 'bg-secondary text-white',
+        time: 'Turned in 11:59 PM',
+        title: 'OS Kernel Lab Report',
+        desc: 'Thread synchronizations, semaphore analysis, and race condition telemetry with multi-threaded trace trees.',
+        loc: 'Virtual LMS Portal',
+        ta: 'TA Marcus Vance',
+        countdown: 'Done',
+        checkpoints: [
+          { text: 'Semaphore mutex benchmarking complete', done: true },
+          { text: 'Memory trace graphs exported to PDF', done: true },
+          { text: 'Git hash verified in repository', done: true }
+        ]
+      },
+      {
+        dayName: 'Wednesday, Oct 16',
+        subtitle: 'CS 240: Data Structures and Algorithms',
+        tag: 'Completed Sessions',
+        tagBg: 'bg-primary text-white',
+        time: 'Ended 7:30 PM',
+        title: 'Review Data Structures & Speed Quiz',
+        desc: 'Binary Indexed Trees, Segment Trees traversal algorithms dry run, followed by quick 15m drill.',
+        loc: 'Lab 304, Turing Hall',
+        ta: 'Prof. Harrison',
+        countdown: 'Done',
+        checkpoints: [
+          { text: 'Implement Segment Tree query in C++', done: true },
+          { text: 'Answer 10 Big-O speed questions', done: true },
+          { text: 'Clarify lazy propagation with Harrison', done: true }
+        ]
+      },
+      {
+        dayName: 'Thursday, Oct 17',
+        subtitle: 'CS 355: Computer Networks Lab Day',
+        tag: 'Major Due (15%)',
+        tagBg: 'bg-error text-white',
+        time: 'Tonight • 11:59 PM',
+        title: 'Socket Programming Lab',
+        desc: 'Multi-threaded TCP client-server implementation. Requires passing Wireshark capture analysis tests and zero thread deadlock.',
+        loc: 'Git Classroom',
+        ta: 'TA Sarah Jenkins',
+        countdown: '08h 42m left',
+        checkpoints: [
+          { text: 'Implement thread pooling for concurrent client connections', done: true },
+          { text: 'Write buffer overflow guard wrappers', done: true },
+          { text: 'Verify socket teardown packet flags in Wireshark', done: false },
+          { text: 'Compile PDF reflection report with benchmark latency graphs', done: false },
+          { text: 'Push commit to origin main & verify autograder badge', done: false }
+        ]
+      },
+      {
+        dayName: 'Friday, Oct 18',
+        subtitle: 'CS 310: Database Systems',
+        tag: 'Due at 5:00 PM',
+        tagBg: 'bg-primary-container text-white',
+        time: 'Deadline: 5:00 PM',
+        title: 'Database Systems ER Diagram Due',
+        desc: 'Conceptual entity-relationship model and relational mapping translated to 3rd Normal Form with constraints.',
+        loc: 'Canvas Portal',
+        ta: 'Prof. Gomez',
+        countdown: '1d 08h left',
+        checkpoints: [
+          { text: 'Review cardinalities for Orders table', done: false },
+          { text: 'Construct relational schema diagrams', done: false },
+          { text: 'Submit PDF to Canvas assignments tab', done: false }
+        ]
+      },
+      {
+        dayName: 'Saturday, Oct 19',
+        subtitle: 'CS 310 / Peer Study Group',
+        tag: 'Group Study (3h)',
+        tagBg: 'bg-secondary text-white',
+        time: '2:00 PM - 5:00 PM',
+        title: 'Peer Study: DBMS Midterm Prep',
+        desc: 'Collaborative review session with Kevin & Priya. Relational algebra exercises, B+ Tree indices practice.',
+        loc: 'Library Pod B',
+        ta: 'Lead: Kevin W.',
+        countdown: '2d left',
+        checkpoints: [
+          { text: 'Print out 2023 Fall practice midterm', done: false },
+          { text: 'Prepare questions on B+ Tree node splits', done: false },
+          { text: 'Confirm whiteboard reservation in Pod B', done: false }
+        ]
+      },
+      {
+        dayName: 'Sunday, Oct 20',
+        subtitle: 'ENG 205: Technical Communications',
+        tag: 'Due 11:59 PM',
+        tagBg: 'bg-primary text-white',
+        time: 'Sunday • 11:59 PM',
+        title: 'Comm Skills Presentation Slides',
+        desc: '12-slide executive slide deck communicating distributed consensus mechanisms to non-technical executives.',
+        loc: 'Canvas Deck Upload',
+        ta: 'Dr. Cheryl Vance',
+        countdown: '3d left',
+        checkpoints: [
+          { text: 'Outline title & problem statement slides', done: false },
+          { text: 'Design simplified Byzantine fault diagram', done: false },
+          { text: 'Add speaker notes & timing triggers', done: false }
+        ]
+      }
+    ];
+
+    // Day Selection Logic
+    const dayTabs = document.querySelectorAll('.day-tab');
+    const agendaTitle = document.getElementById('agendaTitle');
+    const agendaCourseSubtitle = document.getElementById('agendaCourseSubtitle');
+    const countdownTimer = document.getElementById('countdownTimer');
+    const spotlightTag = document.getElementById('spotlightTag');
+    const spotlightTime = document.getElementById('spotlightTime');
+    const spotlightTitle = document.getElementById('spotlightTitle');
+    const spotlightDesc = document.getElementById('spotlightDesc');
+    const spotlightLoc = document.getElementById('spotlightLoc');
+    const spotlightTA = document.getElementById('spotlightTA');
+    const checkpointsList = document.getElementById('checkpointsList');
+    const checkpointCount = document.getElementById('checkpointCount');
+
+    function updateDayView(index) {
+      const data = dayData[index];
+      if (!data) return;
+
+      // Update Tab Styles
+      dayTabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('active-day', 'bg-primary', 'text-on-primary', 'shadow-md');
+          tab.classList.remove('bg-surface', 'text-on-surface');
+          const daySpan = tab.querySelector('span:first-child');
+          if (daySpan) daySpan.classList.add('text-white');
+        } else {
+          tab.classList.remove('active-day', 'bg-primary', 'text-on-primary', 'shadow-md');
+          tab.classList.add('bg-surface', 'text-on-surface');
+          const daySpan = tab.querySelector('span:first-child');
+          if (daySpan) daySpan.classList.remove('text-white');
+        }
+      });
+
+      // Update Right Panel Metadata
+      agendaTitle.textContent = data.dayName;
+      agendaCourseSubtitle.textContent = data.subtitle;
+      countdownTimer.textContent = data.countdown;
+      spotlightTag.textContent = data.tag;
+      spotlightTag.className = 'px-2 py-0.5 rounded-full font-label-xs font-semibold ' + data.tagBg;
+      spotlightTime.textContent = data.time;
+      spotlightTitle.textContent = data.title;
+      spotlightDesc.textContent = data.desc;
+      spotlightLoc.textContent = data.loc;
+      spotlightTA.textContent = data.ta;
+
+      // Render Checkpoints
+      renderCheckpoints(data.checkpoints);
+    }
+
+    function renderCheckpoints(checkpoints) {
+      checkpointsList.innerHTML = '';
+      let resolved = 0;
+
+      checkpoints.forEach((cp, idx) => {
+        if (cp.done) resolved++;
+        const label = document.createElement('label');
+        label.className = 'checkpoint-item flex items-start gap-3 p-2.5 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = cp.done;
+        checkbox.className = 'task-checkbox mt-0.5 w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary';
+
+        const textWrapper = document.createElement('div');
+        textWrapper.className = 'flex flex-col';
+
+        const spanTitle = document.createElement('span');
+        spanTitle.className = 'checkpoint-text font-body-sm text-body-sm text-on-surface font-medium transition-all ' + (cp.done ? 'line-through opacity-60' : '');
+        spanTitle.textContent = cp.text;
+
+        const spanSub = document.createElement('span');
+        spanSub.className = 'font-label-xs text-on-surface-variant';
+        spanSub.textContent = cp.done ? 'Verified & Completed' : 'Pending Action Item';
+
+        textWrapper.appendChild(spanTitle);
+        textWrapper.appendChild(spanSub);
+        label.appendChild(checkbox);
+        label.appendChild(textWrapper);
+
+        // Checkbox interaction
+        checkbox.addEventListener('change', () => {
+          cp.done = checkbox.checked;
+          if (checkbox.checked) {
+            spanTitle.classList.add('line-through', 'opacity-60');
+            spanSub.textContent = 'Verified & Completed';
+          } else {
+            spanTitle.classList.remove('line-through', 'opacity-60');
+            spanSub.textContent = 'Pending Action Item';
+          }
+          updateCheckpointCounter(checkpoints);
+        });
+
+        checkpointsList.appendChild(label);
+      });
+
+      checkpointCount.textContent = `${resolved} of ${checkpoints.length} resolved`;
+    }
+
+    function updateCheckpointCounter(checkpoints) {
+      const resolved = checkpoints.filter(c => c.done).length;
+      checkpointCount.textContent = `${resolved} of ${checkpoints.length} resolved`;
+    }
+
+    // Attach Click Events to Day Tabs
+    dayTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.getAttribute('data-day-index'), 10);
+        updateDayView(idx);
+      });
+    });
+
+    // Event Card Click on Grid: update spotlight panel
+    const eventCards = document.querySelectorAll('.event-card');
+    eventCards.forEach((card) => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const col = card.closest('.day-column');
+        if (col) {
+          const colIndex = parseInt(col.getAttribute('data-col'), 10);
+          updateDayView(colIndex);
+        }
+        // Override spotlight specifically with clicked card
+        spotlightTitle.textContent = card.getAttribute('data-title') || spotlightTitle.textContent;
+        spotlightDesc.textContent = card.getAttribute('data-desc') || spotlightDesc.textContent;
+        spotlightLoc.textContent = card.getAttribute('data-loc') || spotlightLoc.textContent;
+        spotlightTA.textContent = card.getAttribute('data-ta') || spotlightTA.textContent;
+        spotlightTime.textContent = card.getAttribute('data-time') || spotlightTime.textContent;
+        
+        // Highlight active clicked card briefly
+        card.classList.add('ring-2', 'ring-primary');
+        setTimeout(() => card.classList.remove('ring-2', 'ring-primary'), 1000);
+      });
+    });
+
+    // Legend Filters
+    const filterButtons = document.querySelectorAll('.legend-filter');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active-filter', 'bg-surface-container-high', 'text-primary'));
+        btn.classList.add('active-filter', 'bg-surface-container-high', 'text-primary');
+
+        const filter = btn.getAttribute('data-filter');
+        eventCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // View mode pills
+    const viewPills = document.querySelectorAll('.view-pill');
+    viewPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        viewPills.forEach(p => {
+          p.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          p.classList.add('text-on-surface-variant');
+        });
+        pill.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        pill.classList.remove('text-on-surface-variant');
+      });
+    });
+
+    // Modal Handling
+    const modal = document.getElementById('newDeadlineModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const newDeadlineForm = document.getElementById('newDeadlineForm');
+
+    function toggleModal(show) {
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    openModalBtn.addEventListener('click', () => toggleModal(true));
+    closeModalBtn.addEventListener('click', () => toggleModal(false));
+    cancelModalBtn.addEventListener('click', () => toggleModal(false));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) toggleModal(false);
+    });
+
+    newDeadlineForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      toggleModal(false);
+      // Give feedback
+      const originalText = openModalBtn.innerHTML;
+      openModalBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span><span>Added!</span>';
+      setTimeout(() => {
+        openModalBtn.innerHTML = originalText;
+      }, 2000);
+    });
+
+    // Audio Play/Pause micro-interaction
+    const audioToggle = document.getElementById('audioToggle');
+    let isPlaying = false;
+    audioToggle.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      const icon = audioToggle.querySelector('span');
+      if (isPlaying) {
+        icon.textContent = 'pause';
+        audioToggle.classList.add('bg-secondary', 'text-white');
+      } else {
+        icon.textContent = 'play_arrow';
+        audioToggle.classList.remove('bg-secondary', 'text-white');
+      }
+    });
+
+    // Today / Next / Prev Week Buttons
+    const todayBtn = document.getElementById('todayBtn');
+    todayBtn.addEventListener('click', () => updateDayView(3)); // Thursday index 3 is today
+
+    // Initialize initial Thursday state
+    updateDayView(3);
+
+  })();
+</script></main>
+</div>
+</body></html>

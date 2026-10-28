@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deadline Buddy - Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>html,body{margin:0;padding:0}body{font-family:Inter,sans-serif;overscroll-behavior:none}::-webkit-scrollbar{display:none}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+"surface-container-high":"#e2e7ff","secondary":"#006c49","background":"#faf8ff","secondary-container":"#6cf8bb",
+"on-error-container":"#93000a","tertiary-fixed":"#ffddb8","on-tertiary-fixed":"#2a1700","surface-container-lowest":"#ffffff",
+"surface":"#faf8ff","surface-bright":"#faf8ff","primary-fixed":"#e2dfff","on-primary-fixed":"#0f0069","on-primary":"#ffffff",
+"surface-container-highest":"#dae2fd","on-surface":"#131b2e","on-surface-variant":"#464555","primary":"#3525cd",
+"tertiary":"#684000","surface-container":"#eaedff","primary-container":"#4f46e5","tertiary-container":"#885500",
+"error":"#ba1a1a","outline":"#777587","error-container":"#ffdad6","surface-container-low":"#f2f3ff","secondary-fixed":"#6ffbbe","on-secondary-fixed":"#002113"}}}};
+</script>
+</head>
+<body class="bg-surface text-on-surface antialiased text-sm">
+
+<!-- SIDEBAR (same on every page; only the active link changes) -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-[#0d121f] text-slate-100 shadow-xl z-50 flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="h-20 px-6 flex items-center border-b border-slate-800/80">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center text-white font-bold">DB</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-base text-white font-bold tracking-tight">Deadline Buddy</span>
+<span id="urgentBadge" class="px-1.5 py-0.5 rounded-full bg-error text-white text-[10px] font-semibold leading-none">0 urgent</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">Workspace v2.4</span>
+</div>
+</div>
+</div>
+<div class="px-4 py-4">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg bg-primary text-white font-semibold shadow-lg" aria-current="page" href="Dashboard.html.html"><span>Dashboard</span></a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" href="my application.html.html"><span>My Assignments</span><span id="navPending" class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[11px] font-semibold">0</span></a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" href="ExamTracker.html.html"><span>Exam Tracker</span><span id="navExams" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-semibold">0</span></a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" href="WeeklyCalender.html.html"><span>Weekly Calendar</span></a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" href="completed.html.html"><span>Completed Tasks</span><span id="navDone" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold">0</span></a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" href="Settings.html.html"><span>Settings</span></a>
+</nav>
+</div>
+</div>
+<div class="p-4 m-4 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-2 ring-slate-700">M</div>
+<div class="flex flex-col min-w-0"><span class="text-white font-semibold truncate">Student</span><span class="text-[11px] text-slate-400">BS Comp Sci</span></div>
+</div>
+</aside>
+
+<div class="pl-72">
+<header class="fixed top-0 left-72 right-0 h-20 bg-surface-bright/95 backdrop-blur-xl border-b border-surface-container-high z-40 px-8 flex items-center justify-between">
+<div class="flex flex-col">
+<h1 id="greeting" class="text-base text-on-surface font-bold tracking-tight">Welcome 👋</h1>
+<span class="text-xs text-on-surface-variant font-medium">Let's make today productive.</span>
+</div>
+<div class="flex items-center gap-4">
+<input id="globalSearch" class="w-72 h-10 px-3 bg-surface-container-lowest rounded-lg text-xs border border-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search assignments..." type="text"/>
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant text-xs border border-surface-container-high"><span id="todayPill" class="font-medium"></span></div>
+<button onclick="openModal()" class="h-10 px-4 rounded-lg bg-primary hover:bg-primary-container text-white text-sm font-semibold shadow-lg transition-all active:scale-[0.99]">+ Add Task</button>
+</div>
+</header>
+
+<main class="w-full pt-20 px-8 bg-surface min-h-screen">
+<div class="flex flex-col gap-6 py-6 pb-16">
+
+<!-- Next best action -->
+<div class="rounded-2xl bg-surface-container-low p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold">🔥 NEXT BEST ACTION</span>
+<h2 id="heroTitle" class="text-2xl font-semibold tracking-tight mt-2">Nothing pending 🎉</h2>
+<p class="text-on-surface-variant mt-1">Due in <strong id="heroTimer" class="text-error font-semibold">--</strong></p>
+</div>
+</div>
+
+<!-- Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm"><span class="text-xs text-on-surface-variant">Pending Assignments</span><div id="mPending" class="text-4xl font-bold mt-1">0</div></div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm"><span class="text-xs text-on-surface-variant">Due in Next 7 Days</span><div id="mWeek" class="text-4xl font-bold mt-1">0</div></div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm"><span class="text-xs text-on-surface-variant">Exam Prep Readiness</span><div id="mExam" class="text-4xl font-bold mt-1">0%</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 mt-2 overflow-hidden"><div id="mExamBar" class="bg-secondary h-full rounded-full transition-all" style="width:0%"></div></div></div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm"><span class="text-xs text-on-surface-variant">Completed</span><div id="mDone" class="text-4xl font-bold text-secondary mt-1">0</div></div>
+</div>
+
+<!-- Needs attention -->
+<div>
+<h3 class="text-xl font-semibold tracking-tight mb-3">Needs Your Attention</h3>
+<div id="urgentDeck" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+</div>
+
+<!-- Exam prep -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm">
+<h3 class="text-base font-semibold">Exam &amp; Quiz Preparedness</h3>
+<p class="text-xs text-on-surface-variant mb-3">Slide to update progress (saved automatically)</p>
+<div id="examList" class="flex flex-col gap-3"></div>
+</div>
+
+<!-- Assignments -->
+<div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-semibold tracking-tight">Assignments &amp; Coursework</h3>
+<button onclick="openModal()" class="h-10 px-4 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-container">+ New Deliverable</button>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<div id="tabs" class="flex gap-1">
+<button data-f="all" class="tab px-3 py-1.5 rounded-lg text-xs font-medium">All</button>
+<button data-f="pending" class="tab px-3 py-1.5 rounded-lg text-xs font-medium">Pending</button>
+<button data-f="high" class="tab px-3 py-1.5 rounded-lg text-xs font-medium">High Priority</button>
+<button data-f="done" class="tab px-3 py-1.5 rounded-lg text-xs font-medium">Completed</button>
+</div>
+<input id="listSearch" class="h-9 px-3 rounded-lg bg-surface-container-low text-xs focus:outline-none" placeholder="Filter..." type="text"/>
+<select id="prioSel" class="h-9 px-3 rounded-lg bg-surface-container-low text-xs"><option value="all">All Priorities</option><option>High</option><option>Medium</option><option>Low</option></select>
+<button id="sortBtn" class="h-9 px-3 rounded-lg bg-surface-container-low text-xs">Closest Due</button>
+</div>
+</div>
+<div id="list" class="flex flex-col divide-y divide-surface-container/60"></div>
+<div id="empty" class="hidden p-8 text-center text-on-surface-variant">No assignments match your filters.</div>
+</div>
+</div>
+</main>
+</div>
+
+<!-- Add task modal -->
+<div id="modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+<form id="form" class="w-full max-w-lg bg-white rounded-2xl p-6 shadow-2xl flex flex-col gap-3">
+<h3 class="text-base font-semibold">New Deliverable</h3>
+<input id="fTitle" required placeholder="Title (e.g. Distributed Consensus Paper)" class="h-10 px-3 rounded-lg bg-surface border border-surface-container-high"/>
+<div class="grid grid-cols-2 gap-3">
+<input id="fCourse" required placeholder="Course (e.g. CS402)" class="h-10 px-3 rounded-lg bg-surface border border-surface-container-high"/>
+<select id="fPrio" class="h-10 px-3 rounded-lg bg-surface border border-surface-container-high"><option>High</option><option selected>Medium</option><option>Low</option></select>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<input id="fDate" type="date" required class="h-10 px-3 rounded-lg bg-surface border border-surface-container-high"/>
+<input id="fTime" type="time" value="23:59" class="h-10 px-3 rounded-lg bg-surface border border-surface-container-high"/>
+</div>
+<textarea id="fNotes" rows="2" placeholder="Notes (optional)" class="p-3 rounded-lg bg-surface border border-surface-container-high"></textarea>
+<div class="flex justify-end gap-2 pt-2">
+<button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg bg-surface hover:bg-surface-container-high">Cancel</button>
+<button type="submit" class="px-5 py-2 rounded-lg bg-primary text-white font-semibold hover:bg-primary-container">Create Task</button>
+</div>
+</form>
+</div>
+
+<div id="toast" class="fixed bottom-6 right-6 z-[70] px-4 py-3 rounded-xl bg-[#283044] text-white shadow-xl opacity-0 translate-y-20 transition-all duration-300 pointer-events-none"></div>
+
+<script>
+const TASKS_KEY='db_tasks_v4', EXAMS_KEY='db_exams_v4';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const mk=(id,title,course,d,t,priority,notes)=>{const x=new Date();x.setDate(x.getDate()+d);const [h,m]=t.split(':');x.setHours(+h,+m,0,0);return{id,title,course,due:x.toISOString(),priority,done:false,notes}};
+const load=(k,def)=>{try{return JSON.parse(localStorage.getItem(k))||def}catch(e){return def}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+
+let tasks=load(TASKS_KEY,[
+ mk('t1','Thread Synchronization & Mutex Locking Lab','CS402',0,'17:00','High','POSIX threads, include test outputs.'),
+ mk('t2','ER Diagram & 3NF Normalization','CS301',0,'23:59','High','Upload SQL DDL with the PDF diagram.'),
+ mk('t3','Red-Black Tree Rotations & Benchmarks','CS405',1,'17:00','High','Compare lookup speed vs BST.'),
+ mk('t4','Socket Programming Client-Server','CS310',3,'23:59','Medium','Multi-threaded TCP chatroom.'),
+ mk('t5','Investor Pitch Deck Slides','HUM104',5,'12:00','Medium','Submitted to portal.')
+]);
+if(!localStorage.getItem(TASKS_KEY)) tasks[4].done=true;
+let exams=load(EXAMS_KEY,[
+ {id:'e1',course:'CS402',title:'Data Structures Quiz 2',days:3,topics:'Heaps, Trees & Hashmaps',pct:70},
+ {id:'e2',course:'CS301',title:'Database Systems Midterm',days:6,topics:'Relational Algebra, SQL, Transactions',pct:45},
+ {id:'e3',course:'CS310',title:'Networks Lab Practical',days:12,topics:'Wireshark TCP/IP',pct:20}
+]);
+
+let filter='all',search='',prio='all',asc=true;
+const fmt=iso=>new Date(iso).toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+function left(iso){let ms=new Date(iso)-new Date();if(ms<0)return'Overdue';const s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d?`${d}d ${h}h ${m}m`:`${h}h ${m}m ${String(s%60).padStart(2,'0')}s`}
+const pend=()=>tasks.filter(t=>!t.done).sort((a,b)=>new Date(a.due)-new Date(b.due));
+const prioCls=p=>p==='High'?'bg-error-container text-on-error-container':p==='Medium'?'bg-tertiary-fixed text-on-tertiary-fixed':'bg-surface-container text-on-surface-variant';
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.remove('opacity-0','translate-y-20');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('opacity-0','translate-y-20'),2500)}
+
+function renderAll(){
+ const p=pend(), done=tasks.filter(t=>t.done).length;
+ const week=p.filter(t=>new Date(t.due)-new Date()<7*864e5).length;
+ const avg=Math.round(exams.reduce((a,e)=>a+e.pct,0)/(exams.length||1));
+ const urgent=p.filter(t=>new Date(t.due)-new Date()<24*36e5).length;
+ urgentBadge.textContent=urgent+' urgent'; navPending.textContent=p.length; navExams.textContent=exams.length; navDone.textContent=done;
+ mPending.textContent=p.length; mWeek.textContent=week; mExam.textContent=avg+'%'; mExamBar.style.width=avg+'%'; mDone.textContent=done;
+ heroTitle.innerHTML=p[0]?`Focus on <span class="text-primary font-bold">${esc(p[0].course)}</span> — ${esc(p[0].title)}`:'Nothing pending 🎉';
+ tickHero();
+ urgentDeck.innerHTML=p.slice(0,3).map(t=>`<div class="relative p-4 rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+  <div class="absolute left-0 top-0 bottom-0 w-1.5 ${t.priority==='High'?'bg-error':'bg-primary'}"></div>
+  <div class="pl-2"><div class="flex items-center justify-between mb-2"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-surface-container-high">${esc(t.course)}</span><span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${prioCls(t.priority)}">${left(t.due)}</span></div>
+  <h4 class="font-semibold">${esc(t.title)}</h4><p class="text-xs text-on-surface-variant mt-1">${esc(t.notes||'')}</p>
+  <button onclick="toggleDone('${t.id}')" class="mt-3 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-secondary-container text-xs">✓ Mark Done</button></div></div>`).join('')||'<p class="text-on-surface-variant">All clear!</p>';
+ renderList();
+}
+function tickHero(){const p=pend();heroTimer.textContent=p[0]?left(p[0].due):'--'}
+setInterval(tickHero,1000);
+
+function renderExams(){
+ examList.innerHTML=exams.map(e=>`<div class="p-3 rounded-xl bg-surface-container-low">
+  <div class="flex items-center justify-between"><div><span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed">${esc(e.course)}</span> <span class="font-semibold">${esc(e.title)}</span>
+  <div class="text-xs text-on-surface-variant mt-0.5">In ${e.days} days • ${esc(e.topics)}</div></div><span id="pct-${e.id}" class="font-bold text-primary">${e.pct}%</span></div>
+  <input type="range" min="0" max="100" value="${e.pct}" oninput="setExam('${e.id}',this.value)" class="w-full mt-2 accent-primary"/></div>`).join('');
+}
+function setExam(id,v){const e=exams.find(x=>x.id===id);e.pct=+v;document.getElementById('pct-'+id).textContent=v+'%';save(EXAMS_KEY,exams);
+ const avg=Math.round(exams.reduce((a,x)=>a+x.pct,0)/exams.length);mExam.textContent=avg+'%';mExamBar.style.width=avg+'%'}
+
+function renderList(){
+ let rows=tasks.filter(t=>{
+  if(filter==='pending'&&t.done)return false; if(filter==='done'&&!t.done)return false; if(filter==='high'&&(t.priority!=='High'||t.done))return false;
+  if(prio!=='all'&&t.priority!==prio)return false;
+  const q=search.toLowerCase(); if(q&&!(t.title+t.course).toLowerCase().includes(q))return false; return true;
+ }).sort((a,b)=>asc?new Date(a.due)-new Date(b.due):new Date(b.due)-new Date(a.due));
+ empty.classList.toggle('hidden',rows.length>0);
+ list.innerHTML=rows.map(t=>`<div class="p-4 flex items-center justify-between gap-4 hover:bg-surface-container-low/70 ${t.done?'opacity-60':''}">
+  <div class="flex items-center gap-3 min-w-0">
+   <button onclick="toggleDone('${t.id}')" class="w-5 h-5 rounded flex items-center justify-center text-xs ${t.done?'bg-secondary text-white':'bg-surface-container-high'}">${t.done?'✓':''}</button>
+   <div class="min-w-0"><div class="flex items-center gap-2 flex-wrap"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-surface-container">${esc(t.course)}</span><span class="font-medium ${t.done?'line-through':''}">${esc(t.title)}</span></div>
+   <div class="text-xs text-on-surface-variant mt-1 flex items-center gap-2"><span>${fmt(t.due)}</span><span class="px-2 rounded-full font-semibold ${prioCls(t.priority)}">${t.priority}</span></div></div></div>
+  <button onclick="delTask('${t.id}')" class="px-2 py-1 rounded-lg text-xs text-outline hover:text-error hover:bg-error-container/30">Delete</button></div>`).join('');
+}
+function toggleDone(id){const t=tasks.find(x=>x.id===id);t.done=!t.done;save(TASKS_KEY,tasks);renderAll();toast(t.done?'Completed 🎉':'Task reopened')}
+function delTask(id){tasks=tasks.filter(t=>t.id!==id);save(TASKS_KEY,tasks);renderAll();toast('Task removed')}
+
+// filters
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;styleTabs();renderList()}));
+function styleTabs(){document.querySelectorAll('.tab').forEach(b=>b.className='tab px-3 py-1.5 rounded-lg text-xs font-medium '+(b.dataset.f===filter?'bg-surface-container font-semibold':'text-on-surface-variant hover:bg-surface-container'))}
+listSearch.addEventListener('input',e=>{search=e.target.value;renderList()});
+globalSearch.addEventListener('input',e=>{search=e.target.value;listSearch.value=search;renderList()});
+prioSel.addEventListener('change',e=>{prio=e.target.value;renderList()});
+sortBtn.addEventListener('click',()=>{asc=!asc;sortBtn.textContent=asc?'Closest Due':'Furthest Due';renderList()});
+
+// modal
+function openModal(){fDate.value=new Date().toISOString().slice(0,10);modal.classList.remove('hidden');fTitle.focus()}
+function closeModal(){modal.classList.add('hidden');form.reset()}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='n'){e.preventDefault();openModal()}});
+form.addEventListener('submit',e=>{e.preventDefault();
+ tasks.unshift({id:'t'+Date.now(),title:fTitle.value.trim(),course:fCourse.value.trim().toUpperCase(),due:new Date(fDate.value+'T'+(fTime.value||'23:59')).toISOString(),priority:fPrio.value,done:false,notes:fNotes.value.trim()});
+ save(TASKS_KEY,tasks);closeModal();renderAll();toast('Task created ✨')});
+
+// header
+const hr=new Date().getHours();
+greeting.textContent=(hr<12?'Good morning':hr<18?'Good afternoon':'Good evening');
+todayPill.textContent=new Date().toLocaleDateString([], {weekday:'short',month:'short',day:'numeric'});
+
+styleTabs();renderExams();renderAll();
+</script>
+</body></html>

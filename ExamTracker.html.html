@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-high": "#e2e7ff",
+            "secondary": "#006c49",
+            "on-secondary-container": "#00714d",
+            "background": "#faf8ff",
+            "secondary-container": "#6cf8bb",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-bright": "#faf8ff",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface": "#faf8ff",
+            "on-primary-container": "#dad7ff",
+            "primary-fixed": "#e2dfff",
+            "on-error": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-variant": "#dae2fd",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-tint": "#4d44e3",
+            "surface-container-highest": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-surface": "#131b2e",
+            "on-secondary-fixed-variant": "#005236",
+            "on-background": "#131b2e",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c7c4d8",
+            "inverse-on-surface": "#eef0ff",
+            "primary": "#3525cd",
+            "tertiary": "#684000",
+            "secondary-fixed": "#6ffbbe",
+            "surface-dim": "#d2d9f4",
+            "on-primary-fixed-variant": "#3323cc",
+            "on-surface-variant": "#464555",
+            "surface-container": "#eaedff",
+            "secondary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#0f0069",
+            "on-secondary-fixed": "#002113",
+            "on-tertiary-container": "#ffd4a4",
+            "inverse-primary": "#c3c0ff",
+            "primary-container": "#4f46e5",
+            "tertiary-container": "#885500",
+            "error": "#ba1a1a",
+            "outline": "#777587",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#ffb95f",
+            "surface-container-low": "#f2f3ff"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "margin-desktop": "2rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.25rem",
+            "margin-tablet": "1.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          fontFamily: {
+            "headline-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-xs": ["Inter"],
+            "headline-xl": ["Inter"],
+            "label-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          fontSize: {
+            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "label-xs": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "700" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-lg-mobile": ["22px", { lineHeight: "30px", letterSpacing: "-0.015em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Persistent Dark Navigation Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-[#0d121f] text-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.25)] z-50 flex flex-col justify-between">
+<div class="flex flex-col">
+<!-- Brand Header -->
+<div class="h-20 px-space-lg flex items-center justify-between border-b border-slate-800/80">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center text-white font-bold text-base shadow-[0_2px_8px_rgba(79,70,229,0.35)]">
+            DB
+          </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-white font-bold tracking-tight">Deadline Buddy</span>
+<span class="px-1.5 py-0.5 rounded-full bg-error text-white font-label-xs text-[10px] font-semibold leading-none">3 urgent</span>
+</div>
+<span class="font-label-xs text-label-xs text-slate-400 font-medium">Workspace v2.4</span>
+</div>
+</div>
+</div>
+<!-- Quick Search / Shortcut Bar -->
+<div class="px-space-md pt-space-md pb-space-xs">
+<div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-900/90 text-slate-400 text-label-sm border border-slate-800">
+<span class="font-body-sm text-body-sm text-slate-400">Quick Find</span>
+<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-label-xs text-label-xs border border-slate-700/80">⌘K</kbd>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="px-space-md py-space-xs">
+<nav class="flex flex-col gap-1" data-active-classes="bg-primary text-white font-semibold shadow-[0_2px_8px_rgba(79,70,229,0.4)]">
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="dashboard" href="Dashboard.html.html">
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="my-assignments" href="my application.html.html">
+<span class="font-label-md text-label-md">My Assignments</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-label-xs text-label-xs font-semibold">4</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="exam-and-quiz-tracker" href="ExamTracker.html.html">
+<span class="font-label-md text-label-md">Exam Tracker</span>
+<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-label-xs text-label-xs font-semibold">2</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="calendar" href="WeeklyCalender.html.html">
+<span class="font-label-md text-label-md">Weekly Calendar</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="completed-tasks" href="completed.html.html">
+<span class="font-label-md text-label-md">Completed Tasks</span>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-label-xs text-label-xs font-semibold">18</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/80 hover:text-white transition-all" data-path="settings" href="Settings.html.html"
+>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Bottom User Profile Card -->
+<div class="p-space-md m-space-md bg-slate-900/80 border border-slate-800 rounded-xl flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-3 min-w-0">
+<img alt="Manahil Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZvFCnlr61jsOwHx_jn45-Mb37NkRgjvU1PZrd665aIGitlboQJt_Lavvcnesb-jijCFCLzG0UOGVWjYoa11wAFtiMde0BBw6s-9zQZWLvIgxQFpkzjBvkVZu_KMR6rVBpzJJDlHeGMIhWtlpppBjlpQlnVuvZ0EC_GbPXqmSkNDWJqgHbjeAA1zDdUrRFfvf1wHZ1IsRagoMIP2pvU2FYZiUdln5kBzf3aGuQgCr-_R2G9ZEwhLPz"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-white font-semibold truncate">Manahil</span>
+<span class="font-label-xs text-label-xs text-slate-400 truncate">BS Comp Sci</span>
+</div>
+</div>
+<button aria-label="Toggle Dark Mode" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+</button>
+</div>
+</aside>
+<!-- Top Navigation and Content Area -->
+<div class="pl-72">
+<header class="fixed top-0 left-72 right-0 h-20 bg-surface-bright/95 backdrop-blur-xl border-b border-surface-container-high z-40 px-space-xl flex items-center justify-between">
+<!-- Greeting -->
+<div class="flex items-center gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Good morning</h1>
+<span class="text-lg leading-none">👋</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Let's make today productive.</span>
+</div>
+</div>
+<!-- Search, Controls, Actions, Profile -->
+<div class="flex items-center gap-space-md">
+<!-- Search with filter badge -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">search</span>
+<input class="w-72 h-10 pl-9 pr-20 bg-surface-container-lowest rounded-lg text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)] border border-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search tasks, courses, exams..." type="text"/>
+<div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-xs text-[10px] font-semibold border border-surface-container-high">
+            All Topics
+          </div>
+</div>
+<!-- Current Date Pill -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm border border-surface-container-high shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)]">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+<span class="font-medium">Thu, Apr 17</span>
+</div>
+<!-- Add Task Quick Action -->
+<button class="h-10 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center gap-2 shadow-[0_2px_8px_rgba(79,70,229,0.25)] transition-all active:scale-[0.99]">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add Task</span>
+<kbd class="text-[11px] font-normal opacity-80 pl-0.5">⌘N</kbd>
+</button>
+<!-- Top Right Avatar -->
+<img alt="Manahil Profile Avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/20 shadow-[0_1px_3px_0px_rgba(15,23,42,0.04)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZvFCnlr61jsOwHx_jn45-Mb37NkRgjvU1PZrd665aIGitlboQJt_Lavvcnesb-jijCFCLzG0UOGVWjYoa11wAFtiMde0BBw6s-9zQZWLvIgxQFpkzjBvkVZu_KMR6rVBpzJJDlHeGMIhWtlpppBjlpQlnVuvZ0EC_GbPXqmSkNDWJqgHbjeAA1zDdUrRFfvf1wHZ1IsRagoMIP2pvU2FYZiUdln5kBzf3aGuQgCr-_R2G9ZEwhLPz"/>
+</div>
+</header>
+<!-- Main Content Injection -->
+<main class="w-full pt-20 px-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full pb-16">
+<!-- Sub-header & Action Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-xs uppercase tracking-wider">Spring 2025 Milestones</span>
+<span class="text-on-surface-variant font-label-sm font-medium">· Updated 12m ago</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Assessments &amp; Exam Readiness</h2>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container rounded-lg p-1 shadow-sm">
+<button class="px-3 py-1.5 rounded-md bg-surface-container-lowest text-on-surface font-label-sm shadow-sm transition-all flex items-center gap-1.5" id="viewToggleCards">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>Detail Cards</span>
+</button>
+<button class="px-3 py-1.5 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm transition-all flex items-center gap-1.5" id="viewToggleCompact">
+<span class="material-symbols-outlined text-[16px]">view_timeline</span>
+<span>Milestones</span>
+</button>
+</div>
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-primary-fixed-variant font-label-md transition-colors flex items-center gap-2 shadow-sm" onclick="openSimulationModal()">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Simulate Target Grades</span>
+</button>
+</div>
+</div>
+<!-- Row 1: KPI Stat Tiles & Circular Gauge -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter-desktop mb-8">
+<!-- Stat 1: Total Assessments -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md flex flex-col justify-between relative overflow-hidden group hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-1 uppercase tracking-wider">Active Cycle</span>
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">4</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm">
+<span class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+          +1 scheduled
+        </span>
+<span class="text-outline">Term progress 65%</span>
+</div>
+</div>
+<!-- Stat 2: Days Until Next Exam -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md flex flex-col justify-between relative overflow-hidden group hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-1 uppercase tracking-wider">Next In Pipeline</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-xl text-headline-xl text-error font-bold tracking-tight">3</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-medium">Days</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-on-error-container shadow-sm">
+<span class="material-symbols-outlined text-[24px]">alarm</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm">
+<span class="font-medium text-error truncate">CS402 Quiz 2</span>
+<span class="text-outline">Apr 20, 09:00</span>
+</div>
+</div>
+<!-- Stat 3: Average Readiness Gauge -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md flex items-center justify-between relative overflow-hidden group hover:shadow-lg transition-shadow">
+<div class="flex flex-col justify-between h-full py-0.5">
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-1 uppercase tracking-wider">Average Readiness</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight" id="globalReadinessScore">62</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-semibold">%</span>
+</div>
+</div>
+<span class="text-secondary font-label-xs flex items-center gap-1 font-semibold mt-2">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> On-Track for B+
+        </span>
+</div>
+<!-- Circular SVG Meter -->
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-20 h-20 -rotate-90 transform" viewbox="0 0 72 72">
+<circle class="text-surface-container-high" cx="36" cy="36" fill="transparent" r="28" stroke="currentColor" stroke-width="7"></circle>
+<circle class="text-primary-container transition-all duration-700 ease-out" cx="36" cy="36" fill="transparent" id="globalRadialCircle" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="66.8" stroke-linecap="round" stroke-width="7"></circle>
+</svg>
+<span class="material-symbols-outlined absolute text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+</div>
+<!-- Stat 4: High Stakes Assessments -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md flex flex-col justify-between relative overflow-hidden group hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-1 uppercase tracking-wider">High-Stakes Weights</span>
+<span class="font-headline-xl text-headline-xl text-tertiary-container font-bold tracking-tight">2</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant shadow-sm">
+<span class="material-symbols-outlined text-[24px]">flag</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm">
+<span class="text-on-surface font-medium">≥ 25% Total Grade</span>
+<span class="text-outline">65% combined</span>
+</div>
+</div>
+</div>
+<!-- Row 2: Chronological Milestone Timeline -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md mb-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">calendar_view_week</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Spring Assessment Timeline</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-xs text-on-surface-variant">Live Countdown Synced</span>
+</div>
+</div>
+<!-- Horizontal Visual Node Track -->
+<div class="relative overflow-x-auto pb-4">
+<div class="min-w-[760px] relative px-4 pt-6 pb-2">
+<!-- Connecting Line -->
+<div class="absolute top-10 left-10 right-10 h-1 bg-surface-container-high rounded-full"></div>
+<!-- Dynamic colored progress strip -->
+<div class="absolute top-10 left-10 w-[30%] h-1 bg-gradient-to-r from-secondary to-primary-container rounded-full"></div>
+<div class="relative flex justify-between">
+<!-- Node 1: Today -->
+<div class="flex flex-col items-center text-center w-36">
+<div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-md ring-4 ring-secondary-container/40 z-10">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</div>
+<span class="mt-3 font-label-xs text-secondary font-bold uppercase tracking-wider">Today · Apr 17</span>
+<span class="font-label-md text-on-surface font-semibold mt-0.5">Sprint Kickoff</span>
+<span class="font-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Study Plan Initiated</span>
+</div>
+<!-- Node 2: CS402 -->
+<div class="flex flex-col items-center text-center w-36">
+<div class="w-9 h-9 rounded-full bg-error text-on-error flex items-center justify-center shadow-md ring-4 ring-error-container z-10 animate-pulse">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+</div>
+<span class="mt-3 font-label-xs text-error font-bold uppercase tracking-wider">In 3 Days · Apr 20</span>
+<span class="font-label-md text-on-surface font-semibold mt-0.5">CS402 Data Struct</span>
+<span class="font-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Quiz 2 (10% Weight)</span>
+</div>
+<!-- Node 3: CS301 -->
+<div class="flex flex-col items-center text-center w-36">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md ring-4 ring-primary-fixed z-10">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+</div>
+<span class="mt-3 font-label-xs text-primary font-bold uppercase tracking-wider">In 6 Days · Apr 23</span>
+<span class="font-label-md text-on-surface font-semibold mt-0.5">CS301 DBMS</span>
+<span class="font-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Midterm Exam (30%)</span>
+</div>
+<!-- Node 4: CS310 -->
+<div class="flex flex-col items-center text-center w-36">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-sm ring-4 ring-surface-container-high z-10">
+<span class="material-symbols-outlined text-[16px]">lan</span>
+</div>
+<span class="mt-3 font-label-xs text-on-surface-variant font-bold uppercase tracking-wider">In 12 Days · Apr 29</span>
+<span class="font-label-md text-on-surface font-semibold mt-0.5">CS310 Networks</span>
+<span class="font-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Lab Practical (20%)</span>
+</div>
+<!-- Node 5: CS405 -->
+<div class="flex flex-col items-center text-center w-36">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-sm ring-4 ring-surface-container-high z-10">
+<span class="material-symbols-outlined text-[16px]">school</span>
+</div>
+<span class="mt-3 font-label-xs text-on-surface-variant font-bold uppercase tracking-wider">In 22 Days · May 9</span>
+<span class="font-label-md text-on-surface font-semibold mt-0.5">CS405 Algorithms</span>
+<span class="font-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Final Comprehensive (35%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Tab Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface-container-low shadow-inner">
+<button class="filter-tab-btn px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md shadow-sm transition-all font-semibold" onclick="filterAssessments('all', this)">
+        All Assessments (4)
+      </button>
+<button class="filter-tab-btn px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all" onclick="filterAssessments('midterm', this)">
+        Midterms (1)
+      </button>
+<button class="filter-tab-btn px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all" onclick="filterAssessments('quiz', this)">
+        Quizzes (1)
+      </button>
+<button class="filter-tab-btn px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all" onclick="filterAssessments('practical', this)">
+        Practical Labs (1)
+      </button>
+<button class="filter-tab-btn px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all" onclick="filterAssessments('final', this)">
+        Finals (1)
+      </button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+<span class="font-medium">Sort by:</span>
+<select class="bg-surface-container-lowest text-on-surface px-3 py-1.5 rounded-lg border-0 shadow-sm focus:ring-2 focus:ring-primary/20 text-label-sm font-medium cursor-pointer" id="assessmentSortSelect" onchange="sortCards(this.value)">
+<option value="urgency">Urgency (Soonest)</option>
+<option value="weight">Highest Weight (%)</option>
+<option value="readiness-asc">Lowest Readiness</option>
+<option value="readiness-desc">Highest Readiness</option>
+</select>
+</div>
+</div>
+<!-- Deep-Dive Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop mb-8" id="assessmentCardsGrid">
+<!-- CARD 1: CS402 Data Structures Quiz 2 -->
+<div class="assessment-card p-space-lg rounded-2xl bg-surface-container-lowest shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="quiz" data-days="3" data-readiness="70" data-weight="10" id="card-cs402">
+<div>
+<!-- Top Card Meta Header -->
+<div class="flex items-start justify-between gap-3 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-error-container text-on-error-container flex items-center justify-center font-headline-sm font-bold shadow-sm">
+              DS
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">CS402: Data Structures</span>
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label-xs font-semibold uppercase tracking-wider">Due in 3d</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">Quiz 2 · Apr 20 @ 09:00 AM · Hall C2</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-xs font-semibold">
+            Weight: 10%
+          </span>
+</div>
+<!-- Interactive Preparation Readiness Meter -->
+<div class="p-space-md rounded-xl bg-surface-container-low mb-5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">Exam Readiness</span>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="readiness-cs402-val">70%</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-xs font-semibold" id="readiness-cs402-pill">Solid Prep</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden mb-3">
+<div class="h-full bg-secondary rounded-full transition-all duration-300" id="readiness-cs402-bar" style="width: 70%;"></div>
+</div>
+<!-- Micro Controls for Readiness -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs402', -5)">-5%</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs402', 5)">+5%</button>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-xs font-semibold flex items-center gap-1.5 shadow-sm transition-transform active:scale-95" onclick="updateReadiness('cs402', 10)">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+              +10% Log Study Sprint
+            </button>
+</div>
+</div>
+<!-- Syllabus Checklist -->
+<div class="mb-5">
+<div class="flex items-center justify-between mb-2.5">
+<span class="font-label-sm text-on-surface font-semibold uppercase tracking-wider">Syllabus Mastery Topics</span>
+<span class="font-label-xs text-on-surface-variant" id="count-cs402">2 of 3 completed</span>
+</div>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs402', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm line-through text-outline">Heaps &amp; Binary Search Trees</span>
+<span class="ml-auto font-label-xs text-secondary font-medium">Mastered</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs402', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm line-through text-outline">Hash Tables &amp; Quadratic Collision Handling</span>
+<span class="ml-auto font-label-xs text-secondary font-medium">Mastered</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs402', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">AVL Balancing &amp; Double Rotations</span>
+<span class="ml-auto font-label-xs text-tertiary font-medium">Review Needed</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Action Footers -->
+<div class="pt-4 border-t-0 flex items-center gap-2">
+<button class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" onclick="startPomodoro('CS402 AVL Balancing')">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+          Start Pomodoro
+        </button>
+<button class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-primary-fixed-variant font-label-md font-semibold flex items-center justify-center gap-2 transition-colors" onclick="showFlashcards('CS402')">
+<span class="material-symbols-outlined text-[18px]">style</span>
+          Flashcards (32)
+        </button>
+</div>
+</div>
+<!-- CARD 2: CS301 Database Systems Midterm -->
+<div class="assessment-card p-space-lg rounded-2xl bg-surface-container-lowest shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="midterm" data-days="6" data-readiness="45" data-weight="30" id="card-cs301">
+<div>
+<div class="flex items-start justify-between gap-3 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-headline-sm font-bold shadow-sm">
+              DB
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">CS301: Database Systems</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-xs font-semibold uppercase tracking-wider">In 6 Days</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">Midterm Exam · Apr 23 @ 02:00 PM · CS-Lab 3</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-xs font-bold shadow-sm">
+            High Stakes: 30%
+          </span>
+</div>
+<!-- Preparation Readiness Meter -->
+<div class="p-space-md rounded-xl bg-surface-container-low mb-5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">Exam Readiness</span>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="readiness-cs301-val">45%</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-xs font-semibold" id="readiness-cs301-pill">Needs Velocity</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden mb-3">
+<div class="h-full bg-tertiary-container rounded-full transition-all duration-300" id="readiness-cs301-bar" style="width: 45%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs301', -5)">-5%</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs301', 5)">+5%</button>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-xs font-semibold flex items-center gap-1.5 shadow-sm transition-transform active:scale-95" onclick="updateReadiness('cs301', 10)">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+              +10% Log Study Sprint
+            </button>
+</div>
+</div>
+<!-- Syllabus Topics Checklist -->
+<div class="mb-5">
+<div class="flex items-center justify-between mb-2.5">
+<span class="font-label-sm text-on-surface font-semibold uppercase tracking-wider">Core Syllabus Topics</span>
+<span class="font-label-xs text-on-surface-variant" id="count-cs301">2 of 4 completed</span>
+</div>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs301', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm line-through text-outline">Relational Algebra &amp; Tuple Calculus</span>
+<span class="ml-auto font-label-xs text-secondary font-medium">Done</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs301', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm line-through text-outline">Complex SQL Subqueries &amp; Outer Joins</span>
+<span class="ml-auto font-label-xs text-secondary font-medium">Done</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs301', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">3NF &amp; BCNF Functional Normalization</span>
+<span class="ml-auto font-label-xs text-error font-medium">Critical</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs301', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">B+ Tree Indexing &amp; Query Plans</span>
+<span class="ml-auto font-label-xs text-outline font-medium">Unopened</span>
+</label>
+</div>
+</div>
+<!-- Study Resources Row -->
+<div class="flex items-center gap-2 mb-4">
+<a class="flex-1 px-3 py-2 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-xs flex items-center justify-center gap-1.5 transition-colors" href="#" onclick="event.preventDefault()">
+<span class="material-symbols-outlined text-[16px] text-error">picture_as_pdf</span>
+<span>Cheat Sheet.pdf</span>
+</a>
+<a class="flex-1 px-3 py-2 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-xs flex items-center justify-center gap-1.5 transition-colors" href="#" onclick="event.preventDefault()">
+<span class="material-symbols-outlined text-[16px] text-primary">history_edu</span>
+<span>Past 2024 Papers</span>
+</a>
+</div>
+</div>
+<div class="pt-2 flex items-center gap-2">
+<button class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" onclick="startPomodoro('CS301 Normalization 3NF')">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+          Start Pomodoro
+        </button>
+<button class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-primary-fixed-variant font-label-md font-semibold flex items-center justify-center gap-2 transition-colors" onclick="showFlashcards('CS301')">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+          Review BCNF
+        </button>
+</div>
+</div>
+<!-- CARD 3: CS310 Computer Networks Lab Practical -->
+<div class="assessment-card p-space-lg rounded-2xl bg-surface-container-lowest shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="practical" data-days="12" data-readiness="25" data-weight="20" id="card-cs310">
+<div>
+<div class="flex items-start justify-between gap-3 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-headline-sm font-bold shadow-sm">
+              NET
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">CS310: Computer Networks</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-xs font-semibold uppercase tracking-wider">In 12 Days</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">Lab Practical · Apr 29 @ 11:30 AM · Hall B Hardware Lab</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-xs font-semibold">
+            Weight: 20%
+          </span>
+</div>
+<!-- Preparation Readiness Meter -->
+<div class="p-space-md rounded-xl bg-surface-container-low mb-5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">Exam Readiness</span>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-error font-bold" id="readiness-cs310-val">25%</span>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-xs font-semibold" id="readiness-cs310-pill">At Risk</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden mb-3">
+<div class="h-full bg-error rounded-full transition-all duration-300" id="readiness-cs310-bar" style="width: 25%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs310', -5)">-5%</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs310', 5)">+5%</button>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-xs font-semibold flex items-center gap-1.5 shadow-sm transition-transform active:scale-95" onclick="updateReadiness('cs310', 10)">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+              +10% Log Study Sprint
+            </button>
+</div>
+</div>
+<!-- Syllabus Checklist -->
+<div class="mb-5">
+<div class="flex items-center justify-between mb-2.5">
+<span class="font-label-sm text-on-surface font-semibold uppercase tracking-wider">Lab Station Competencies</span>
+<span class="font-label-xs text-on-surface-variant" id="count-cs310">1 of 3 completed</span>
+</div>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs310', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm line-through text-outline">Wireshark Packet Capture &amp; Protocol Dissection</span>
+<span class="ml-auto font-label-xs text-secondary font-medium">Tested</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs310', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">TCP 3-Way Handshake &amp; SYN Flood Mitigation</span>
+<span class="ml-auto font-label-xs text-error font-medium">Priority</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs310', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">BSD Sockets API in C (select/epoll concurrency)</span>
+<span class="ml-auto font-label-xs text-outline font-medium">Unopened</span>
+</label>
+</div>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2">
+<button class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" onclick="startPomodoro('CS310 Sockets Practice')">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+          Simulate Packet Lab
+        </button>
+<button class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-primary-fixed-variant font-label-md font-semibold flex items-center justify-center gap-2 transition-colors" onclick="scheduleFocusBlock('CS310')">
+<span class="material-symbols-outlined text-[18px]">event_upcoming</span>
+          Book Lab Time
+        </button>
+</div>
+</div>
+<!-- CARD 4: CS405 Advanced Algorithms Comprehensive -->
+<div class="assessment-card p-space-lg rounded-2xl bg-surface-container-lowest shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="final" data-days="22" data-readiness="15" data-weight="35" id="card-cs405">
+<div>
+<div class="flex items-start justify-between gap-3 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary font-headline-sm font-bold flex items-center justify-center shadow-sm">
+              ALG
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">CS405: Adv Algorithms</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-xs font-semibold uppercase tracking-wider">In 22 Days</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">Final Comprehensive · May 9 @ 08:30 AM · Auditorium 1</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-xs font-bold shadow-sm">
+            High Stakes: 35%
+          </span>
+</div>
+<!-- Preparation Readiness Meter -->
+<div class="p-space-md rounded-xl bg-surface-container-low mb-5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">Exam Readiness</span>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="readiness-cs405-val">15%</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-xs font-semibold" id="readiness-cs405-pill">Early Stage</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden mb-3">
+<div class="h-full bg-primary rounded-full transition-all duration-300" id="readiness-cs405-bar" style="width: 15%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs405', -5)">-5%</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface flex items-center justify-center shadow-sm text-label-md font-bold transition-transform active:scale-95" onclick="updateReadiness('cs405', 5)">+5%</button>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-xs font-semibold flex items-center gap-1.5 shadow-sm transition-transform active:scale-95" onclick="updateReadiness('cs405', 10)">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+              +10% Log Study Sprint
+            </button>
+</div>
+</div>
+<!-- Topic Breakdown -->
+<div class="mb-5">
+<div class="flex items-center justify-between mb-2.5">
+<span class="font-label-sm text-on-surface font-semibold uppercase tracking-wider">Advanced Curriculum Topics</span>
+<span class="font-label-xs text-on-surface-variant" id="count-cs405">0 of 3 completed</span>
+</div>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs405', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">Dynamic Programming on Trees &amp; Bitmasks</span>
+<span class="ml-auto font-label-xs text-outline font-medium">Pending</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs405', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">Network Flow (Edmonds-Karp &amp; Dinic's Algorithm)</span>
+<span class="ml-auto font-label-xs text-outline font-medium">Pending</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary cursor-pointer" onchange="toggleTopic('cs405', this)" type="checkbox"/>
+<span class="font-body-md text-on-surface text-sm font-medium">NP-Completeness Reductions (3-SAT to CLIQUE)</span>
+<span class="ml-auto font-label-xs text-outline font-medium">Pending</span>
+</label>
+</div>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2">
+<button class="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" onclick="startPomodoro('CS405 Dynamic Programming')">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+          Create Revision Path
+        </button>
+<button class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-primary-fixed-variant font-label-md font-semibold flex items-center justify-center gap-2 transition-colors" onclick="showFlashcards('CS405')">
+<span class="material-symbols-outlined text-[18px]">schema</span>
+          Proofs Deck
+        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Smart Recommendations & Readiness Booster Banner -->
+<div class="rounded-2xl bg-gradient-to-r from-surface-container-high via-surface-container to-secondary-container/30 p-space-lg shadow-md relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-md shrink-0">
+<span class="material-symbols-outlined text-[24px]">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Personalized Study Velocity Alert</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-xs font-semibold">AI Assistant</span>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-3xl">
+          Your <strong class="text-on-surface">CS310 Networks readiness is 25% with 12 days left</strong>. Recommended: schedule two 45-minute revision blocks to reach the 80% on-track target before the lab exam.
+        </p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="px-5 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold shadow-md flex items-center gap-2 transition-all active:scale-95" id="autoScheduleBtn" onclick="autoScheduleStudyBlocks()">
+<span class="material-symbols-outlined text-[20px]">auto_fix_high</span>
+<span>Auto-Schedule Study Blocks</span>
+</button>
+<button class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-variant text-on-surface-variant transition-colors" onclick="dismissRecommendation(this)">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Micro Interaction Toast Notification Container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-2xl" id="toastNotification">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" id="toastIcon">check_circle</span>
+<span class="font-body-sm font-medium text-sm" id="toastMessage">Action updated successfully</span>
+</div>
+<!-- Grade Simulation Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4" id="simulationModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">calculate</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Target Grade Simulator</h3>
+</div>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-on-surface-variant flex items-center justify-center" onclick="closeSimulationModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">
+        Adjust expected exam performance scores to forecast your final GPA trajectory for Spring 2025.
+      </p>
+<div class="space-y-4 mb-6">
+<div>
+<div class="flex justify-between text-label-sm font-medium mb-1">
+<span>CS402 Quiz 2 (10% weight)</span>
+<span class="font-bold text-primary" id="sim-cs402-val">85%</span>
+</div>
+<input class="w-full accent-primary cursor-pointer" max="100" min="40" oninput="updateSimValue('cs402', this.value)" type="range" value="85"/>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-medium mb-1">
+<span>CS301 Midterm (30% weight)</span>
+<span class="font-bold text-primary" id="sim-cs301-val">78%</span>
+</div>
+<input class="w-full accent-primary cursor-pointer" max="100" min="40" oninput="updateSimValue('cs301', this.value)" type="range" value="78"/>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-medium mb-1">
+<span>CS310 Lab Practical (20% weight)</span>
+<span class="font-bold text-primary" id="sim-cs310-val">72%</span>
+</div>
+<input class="w-full accent-primary cursor-pointer" max="100" min="40" oninput="updateSimValue('cs310', this.value)" type="range" value="72"/>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-medium mb-1">
+<span>CS405 Final (35% weight)</span>
+<span class="font-bold text-primary" id="sim-cs405-val">80%</span>
+</div>
+<input class="w-full accent-primary cursor-pointer" max="100" min="40" oninput="updateSimValue('cs405', this.value)" type="range" value="80"/>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-xs text-on-surface-variant block uppercase tracking-wider">Projected Term GPA</span>
+<span class="font-headline-md text-headline-md text-primary font-bold" id="simulatedGpa">3.64 / 4.0</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary text-on-secondary font-label-xs font-semibold">Honors Dean's List</span>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md font-semibold hover:bg-primary-container shadow-sm" onclick="closeSimulationModal()">
+          Apply to Workspace
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script src="config.js"></script>
+<script>
+  // State store
+  const assessmentData = {
+    cs402: { score: 70 },
+    cs301: { score: 45 },
+    cs310: { score: 25 },
+    cs405: { score: 15 }
+  };
+
+  const simScores = {
+    cs402: 85,
+    cs301: 78,
+    cs310: 72,
+    cs405: 80
+  };
+
+  function updateReadiness(courseId, delta) {
+    const item = assessmentData[courseId];
+    if (!item) return;
+
+    item.score = Math.min(100, Math.max(0, item.score + delta));
+    
+    // Update local card UI
+    const scoreVal = document.getElementById(`readiness-${courseId}-val`);
+    const bar = document.getElementById(`readiness-${courseId}-bar`);
+    const pill = document.getElementById(`readiness-${courseId}-pill`);
+    const card = document.getElementById(`card-${courseId}`);
+
+    if (scoreVal) scoreVal.textContent = item.score + '%';
+    if (bar) bar.style.width = item.score + '%';
+    if (card) card.setAttribute('data-readiness', item.score);
+
+    // Update pill text & styling
+    if (pill) {
+      if (item.score >= 70) {
+        pill.textContent = 'Solid Prep';
+        pill.className = 'px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-xs font-semibold';
+      } else if (item.score >= 40) {
+        pill.textContent = 'Needs Velocity';
+        pill.className = 'px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-xs font-semibold';
+      } else {
+        pill.textContent = 'At Risk';
+        pill.className = 'px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-xs font-semibold';
+      }
+    }
+
+    recalcGlobalReadiness();
+    showToast(`Logged ${delta > 0 ? '+' : ''}${delta}% revision for ${courseId.toUpperCase()}`);
+  }
+
+  function recalcGlobalReadiness() {
+    const values = Object.values(assessmentData).map(a => a.score);
+    const avg = Math.round(values.reduce((sum, v) => sum + v, 0) / values.length);
+    
+    const globalEl = document.getElementById('globalReadinessScore');
+    const radial = document.getElementById('globalRadialCircle');
+    
+    if (globalEl) globalEl.textContent = avg;
+    
+    // SVG stroke length: perimeter ~ 175.9
+    // offset = 175.9 * (1 - avg/100)
+    if (radial) {
+      const offset = 175.9 * (1 - (avg / 100));
+      radial.style.strokeDashoffset = offset;
+    }
+  }
+
+  function toggleTopic(courseId, checkbox) {
+    const card = document.getElementById(`card-${courseId}`);
+    if (!card) return;
+
+    const checkboxes = card.querySelectorAll('input[type="checkbox"]');
+    const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+    const totalCount = checkboxes.length;
+
+    const countLabel = document.getElementById(`count-${courseId}`);
+    if (countLabel) {
+      countLabel.textContent = `${checkedCount} of ${totalCount} completed`;
+    }
+
+    // Strike-through text style toggle
+    const textSpan = checkbox.parentElement.querySelector('span:first-of-type');
+    if (checkbox.checked) {
+      textSpan.classList.add('line-through', 'text-outline');
+      textSpan.classList.remove('font-medium');
+      // boost readiness slightly on checked topic
+      updateReadiness(courseId, 4);
+    } else {
+      textSpan.classList.remove('line-through', 'text-outline');
+      textSpan.classList.add('font-medium');
+      updateReadiness(courseId, -4);
+    }
+  }
+
+  function filterAssessments(category, btn) {
+    // Update active tab styles
+    document.querySelectorAll('.filter-tab-btn').forEach(b => {
+      b.classList.remove('bg-surface-container-lowest', 'text-primary', 'font-semibold', 'shadow-sm');
+      b.classList.add('text-on-surface-variant');
+    });
+    btn.classList.add('bg-surface-container-lowest', 'text-primary', 'font-semibold', 'shadow-sm');
+    btn.classList.remove('text-on-surface-variant');
+
+    // Filter cards
+    const cards = document.querySelectorAll('.assessment-card');
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      if (category === 'all' || cardCategory === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function sortCards(criteria) {
+    const grid = document.getElementById('assessmentCardsGrid');
+    const cards = Array.from(grid.querySelectorAll('.assessment-card'));
+
+    cards.sort((a, b) => {
+      const daysA = parseInt(a.getAttribute('data-days'), 10);
+      const daysB = parseInt(b.getAttribute('data-days'), 10);
+      const weightA = parseInt(a.getAttribute('data-weight'), 10);
+      const weightB = parseInt(b.getAttribute('data-weight'), 10);
+      const readA = parseInt(a.getAttribute('data-readiness'), 10);
+      const readB = parseInt(b.getAttribute('data-readiness'), 10);
+
+      if (criteria === 'urgency') return daysA - daysB;
+      if (criteria === 'weight') return weightB - weightA;
+      if (criteria === 'readiness-asc') return readA - readB;
+      if (criteria === 'readiness-desc') return readB - readA;
+      return 0;
+    });
+
+    cards.forEach(c => grid.appendChild(c));
+    showToast(`Sorted cards by ${criteria.replace('-', ' ')}`);
+  }
+
+  function startPomodoro(topic) {
+    showToast(`Starting 25-minute Pomodoro: ${topic}`);
+  }
+
+  function showFlashcards(course) {
+    showToast(`Loading flashcard deck for ${course}...`);
+  }
+
+  function scheduleFocusBlock(course) {
+    showToast(`Lab access pass booked for ${course} on April 22`);
+  }
+
+  async function autoScheduleStudyBlocks() {
+    const btn = document.getElementById('autoScheduleBtn');
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Asking AI...</span>`;
+    try {
+      const today = new Date().toDateString();
+      const blocks = await askGemini(
+        `Today is ${today}. A student's CS310 Networks lab exam is in 12 days and readiness is 25%. ` +
+        `Suggest 2 study blocks (45 minutes each) within the next 3 days. ` +
+        `Reply ONLY as a JSON array like [{"day":"Fri","time":"4:00 PM","topic":"..."}].`, true);
+      const label = blocks.map(b => `${b.day} ${b.time}`).join(' & ');
+      btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">check</span><span>${blocks.length} Blocks Scheduled</span>`;
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-secondary');
+      updateReadiness('cs310', 15);
+      showToast('Scheduled: ' + label + ' (CS310)');
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">auto_fix_high</span><span>Auto-Schedule Study Blocks</span>`;
+      showToast('AI request failed. Check API key / internet.');
+    }
+  }
+
+  function dismissRecommendation(btn) {
+    const parent = btn.closest('.rounded-2xl');
+    if (parent) {
+      parent.style.opacity = '0';
+      parent.style.transform = 'translateY(10px)';
+      parent.style.transition = 'all 0.3s ease';
+      setTimeout(() => parent.remove(), 300);
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toastNotification');
+    const msgEl = document.getElementById('toastMessage');
+    if (!toast || !msgEl) return;
+
+    msgEl.textContent = msg;
+    toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+    }, 3200);
+  }
+
+  // Simulation Modal
+  function openSimulationModal() {
+    const modal = document.getElementById('simulationModal');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeSimulationModal() {
+    const modal = document.getElementById('simulationModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function updateSimValue(key, val) {
+    simScores[key] = parseInt(val, 10);
+    const label = document.getElementById(`sim-${key}-val`);
+    if (label) label.textContent = val + '%';
+
+    // Weighted GPA approx
+    const weightedScore = (simScores.cs402 * 0.10) + (simScores.cs301 * 0.30) + (simScores.cs310 * 0.20) + (simScores.cs405 * 0.35);
+    const simulatedGpa = Math.min(4.0, (weightedScore / 100) * 4.2).toFixed(2);
+    
+    const gpaLabel = document.getElementById('simulatedGpa');
+    if (gpaLabel) gpaLabel.textContent = `${simulatedGpa} / 4.0`;
+  }
+</script></main>
+</div>
+</body></html>
